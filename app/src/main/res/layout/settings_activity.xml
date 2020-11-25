@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+   class="com.example.earthqueakreport.SettingsActivity$EarthquakePreferenceFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android.earthqueakreport.SettingsActivity">
+    </fragment>
+<!--    <FrameLayout-->
+<!--        class="com.example.earthqueakreport.SettingsActivity$EarthquakePreferenceFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+
+<!--        >-->
+<!--        <fragment-->
+<!--           class="com.example.earthqueakreport.SettingsActivity$EarthquakePreferenceFragment"-->
+<!--                xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--                xmlns:tools="http://schemas.android.com/tools"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                tools:context="com.example.android.earthqueakreport.SettingsActivity">-->
+<!--            </fragment>-->
+<!--    </FrameLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
