@@ -1,10 +1,13 @@
 package com.example.earthquake
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -20,8 +23,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mAdapter = quakeAdapter(this)
 
+        mAdapter = quakeAdapter(this)
+        recyclerView.layoutManager  = LinearLayoutManager(this)
+        recyclerView.adapter = mAdapter
+        fatchData()
     }
     fun fatchData() {
         progressBar.visibility = View.VISIBLE
@@ -32,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 null,
                 Response.Listener { response ->
                     val reports = getReport(response)
-//                    val newsJsonArray = response.getJSONArray("articles")
+                    //                    val newsJsonArray = response.getJSONArray("articles")
 //                    val newsArray = ArrayList<news>()
 //                    for(i in 0 until newsJsonArray.length()){
 //                        val newsJsonObject = newsJsonArray.getJSONObject(i)
@@ -45,20 +51,26 @@ class MainActivity : AppCompatActivity() {
 //                        newsArray.add(newNews)
 //                    }
                     if (reports != null) {
+                        Toast("report updated")
                         mAdapter.updateReports(reports)
                     }else{
+
                         empty.visibility = View.VISIBLE
                     }
                     progressBar.visibility = View.GONE
                 },
                 Response.ErrorListener {
+                    empty.text = it.localizedMessage
+                    empty.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                 }
         )
 
         MySingletonClass.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-
+fun Toast(msg:String){
+    Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+}
     fun getReport(SAMPLE_JSON_RESPONSE: JSONObject): java.util.ArrayList<report>? {
 
         // Create an empty ArrayList that we can start adding earthquakes to

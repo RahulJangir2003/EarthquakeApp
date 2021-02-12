@@ -26,7 +26,7 @@ private var reports:ArrayList<report> = ArrayList()
     override fun getItemCount(): Int {
         return reports.size
     }
-fun updateReports(newReports:ArrayList<report>){
+fun updateReports( newReports:ArrayList<report>){
     reports.clear()
     reports = newReports
     notifyDataSetChanged()
